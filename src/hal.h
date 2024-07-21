@@ -28,11 +28,8 @@ int hal_write(int fd, const void *buf, int nbytes);
 int hal_flush(int fd);
 void hal_abort(const char *s);
 
-/*
-  or define the empty macros instead of function.
-#define hal_write(fd,buf,nbytes)  ((void)0)
-#define hal_flush(fd)             ((void)0)
-#define hal_abort(s)              ((void)0)
-*/
+#define hal_write(fd, buf, nbytes) ((void)0)
+#define hal_flush(fd) ((void)0)
+#define hal_abort(s) ((void)0)
 
 #endif
