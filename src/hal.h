@@ -1,6 +1,7 @@
 /*! @file
   @brief
-  Hardware abstraction layer minimum set sample.
+  Hardware abstraction layer
+        for Zephyr.
 
   <pre>
   Copyright (C) 2015- Kyushu Institute of Technology.
@@ -13,13 +14,15 @@
 #ifndef MRBC_SRC_HAL_H_
 #define MRBC_SRC_HAL_H_
 
+#include <zephyr/kernel.h>
+
 #define MRBC_TICK_UNIT 1
 #define MRBC_TIMESLICE_TICK_COUNT 10
 
 #define hal_init() ((void)0)
 #define hal_enable_irq() ((void)0)
 #define hal_disable_irq() ((void)0)
-#define hal_idle_cpu() (delay(MRBC_TICK_UNIT), mrbc_tick())  // delay 1ms
+#define hal_idle_cpu() ((k_msleep(MRBC_TICK_UNIT)), mrbc_tick())  // delay 1ms
 
 int hal_write(int fd, const void *buf, int nbytes);
 int hal_flush(int fd);
