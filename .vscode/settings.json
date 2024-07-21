@@ -1,0 +1,7 @@
+{
+    "C_Cpp.clang_format_style": "Google",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "nrf-connect.toolchain.path": "${nrf-connect.toolchain:2.6.1}",
+    "nrf-connect.topdir": "${nrf-connect.sdk:2.6.1}"
+}
