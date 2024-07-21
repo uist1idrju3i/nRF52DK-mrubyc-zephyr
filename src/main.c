@@ -4,8 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include <stdint.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
+
+#include "mrubyc.h"
 
 /* 1000 msec = 1 sec */
 #define SLEEP_TIME_MS 1000
@@ -19,8 +22,13 @@
  */
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 
+#define MEMORY_SIZE (1024 * 20)
+static uint8_t memory_pool[MEMORY_SIZE];
+
 int main(void) {
   int ret;
+
+  mrbc_init(memory_pool, MEMORY_SIZE);
 
   if (!gpio_is_ready_dt(&led)) {
     return 0;
