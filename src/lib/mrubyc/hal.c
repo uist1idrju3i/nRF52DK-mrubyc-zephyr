@@ -12,23 +12,23 @@
 static uint8_t memory_pool[MEMORY_SIZE];
 
 /* ===== prototype ===== */
-static int mrubyc_init(void);
-static int mrubyc_main(void);
-void mrubyc_tick(struct k_work *const work);
+static int mrubyc_halinit(void);
+static int mrubyc_halmain(void);
+void mrubyc_haltick(struct k_work *const work);
 
 /* ===== kernel ===== */
-SYS_INIT(mrubyc_init, APPLICATION, 0);
-K_WORK_DEFINE(mrubyc_work, mrubyc_tick);
-K_THREAD_DEFINE(mrubyc_thread, 384, mrubyc_main, NULL, NULL, NULL, -2, 0, 0);
+SYS_INIT(mrubyc_halinit, APPLICATION, 0);
+K_WORK_DEFINE(mrubyc_work, mrubyc_haltick);
+K_THREAD_DEFINE(mrubyc_thread, 384, mrubyc_halmain, NULL, NULL, NULL, -2, 0, 0);
 
-/* ===== mrubyc_init ===== */
-static int mrubyc_init(void) {
+/* ===== mrubyc_halinit ===== */
+static int mrubyc_halinit(void) {
   mrbc_init(memory_pool, MEMORY_SIZE);
   return EXIT_SUCCESS;
 }
 
-/* ===== mrubyc_main ===== */
-static int mrubyc_main(void) {
+/* ===== mrubyc_halmain ===== */
+static int mrubyc_halmain(void) {
   while (1) {
     k_work_submit(&mrubyc_work);
     k_msleep(1);
@@ -36,8 +36,8 @@ static int mrubyc_main(void) {
   return EXIT_FAILURE;
 }
 
-/* ===== mrubyc_tick ===== */
-void mrubyc_tick(struct k_work *const work) { mrbc_tick(); }
+/* ===== mrubyc_haltick ===== */
+void mrubyc_haltick(struct k_work *const work) { mrbc_tick(); }
 
 /* ===== hal_write ===== */
 int hal_write(int fd, const void *buf, int nbytes) {
