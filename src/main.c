@@ -13,7 +13,7 @@
 #define LED0_NODE DT_ALIAS(led0)
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 
-/* ===== mruby/c ===== */
+/* ===== prototype ===== */
 extern const uint8_t sample1[];
 extern const uint8_t sample2[];
 static void c_sw1_read(mrb_vm *vm, mrb_value *v, int argc);
