@@ -6,6 +6,8 @@ project(nRF52DK-mrubyc-zephyr)
 
 target_sources(app PRIVATE
                     src/main.c
+                    src/sample1.c
+                    src/sample2.c
                     mrubyc/src/alloc.c
                     mrubyc/src/c_array.c
                     mrubyc/src/c_hash.c
