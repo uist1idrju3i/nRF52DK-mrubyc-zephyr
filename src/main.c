@@ -13,29 +13,19 @@
 #define LED0_NODE DT_ALIAS(led0)
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 
+/* ===== mruby/c ===== */
 extern const uint8_t sample1[];
 extern const uint8_t sample2[];
+static void c_sw1_read(mrb_vm *vm, mrb_value *v, int argc);
+static void c_led1_write(mrb_vm *vm, mrb_value *v, int argc);
 
-#define MEMORY_SIZE (1024 * 20)
-static uint8_t memory_pool[MEMORY_SIZE];
-
-static void c_sw1_read(mrb_vm *vm, mrb_value *v, int argc) {
-  SET_INT_RETURN(1);
-}
-
-static void c_led1_write(mrb_vm *vm, mrb_value *v, int argc) {
-  gpio_pin_set_dt(&led, GET_INT_ARG(1));
-}
-
+/* ===== main ===== */
 int main(void) {
   int ret;
-
-  mrbc_init(memory_pool, MEMORY_SIZE);
 
   if (!gpio_is_ready_dt(&led)) {
     return 0;
   }
-
   ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
   if (ret < 0) {
     return 0;
@@ -50,4 +40,14 @@ int main(void) {
   mrbc_run();
 
   return 0;
+}
+
+/* ===== c_sw1_read ===== */
+static void c_sw1_read(mrb_vm *vm, mrb_value *v, int argc) {
+  SET_INT_RETURN(1);  // DUMMY
+}
+
+/* ===== c_led1_write ===== */
+static void c_led1_write(mrb_vm *vm, mrb_value *v, int argc) {
+  gpio_pin_set_dt(&led, GET_INT_ARG(1));
 }
