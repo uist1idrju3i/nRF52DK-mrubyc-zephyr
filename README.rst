@@ -2,12 +2,11 @@
 ********
 mruby/cを用いて、Zephyrサンプルコード「Blinky」相当の動作を実現する
 
-ビルド方法
+ビルド方法 (予めGit submoduleを用いてmruby/cを取得する)
 ********
-予めGit submoduleを用いてmruby/cを取得する
-#. ```cd mrubyc```
-#. ```git submodule init```
-#. ```git submodule update```
+#. cd mrubyc
+#. git submodule init
+#. git submodule update
 
 動作確認環境
 ********
