@@ -20,8 +20,8 @@
 #define MRBC_TIMESLICE_TICK_COUNT 10
 
 #define hal_init() ((void)0)
-#define hal_enable_irq() ((void)0)
-#define hal_disable_irq() ((void)0)
+#define hal_enable_irq() (k_sched_unlock())
+#define hal_disable_irq() (k_sched_lock())
 #define hal_idle_cpu() ((k_msleep(MRBC_TICK_UNIT)))  // delay 1ms
 
 int hal_write(int fd, const void *buf, int nbytes);
