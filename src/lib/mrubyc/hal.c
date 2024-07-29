@@ -19,7 +19,8 @@ void mrubyc_haltick(struct k_work *const work);
 /* ===== kernel ===== */
 SYS_INIT(mrubyc_halinit, APPLICATION, 0);
 K_WORK_DEFINE(mrubyc_work, mrubyc_haltick);
-K_THREAD_DEFINE(mrubyc_thread, 384, mrubyc_halmain, NULL, NULL, NULL, -2, 0, 0);
+K_THREAD_DEFINE(mrubyc_thread, 384, mrubyc_halmain, NULL, NULL, NULL, -2,
+                K_ESSENTIAL, 0);
 
 /* ===== mrubyc_halinit ===== */
 static int mrubyc_halinit(void) {
