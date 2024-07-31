@@ -19,10 +19,21 @@
 #define MRBC_TICK_UNIT 1
 #define MRBC_TIMESLICE_TICK_COUNT 10
 
+#if !defined(MRBC_NO_TIMER)
+
+#define hal_init() ((void)0)
+void hal_enable_irq(void);
+void hal_disable_irq(void);
+#define hal_idle_cpu() ((k_msleep(MRBC_TICK_UNIT)))  // delay 1ms
+
+#else
+
 #define hal_init() ((void)0)
 #define hal_enable_irq() (k_sched_unlock())
 #define hal_disable_irq() (k_sched_lock())
 #define hal_idle_cpu() ((k_msleep(MRBC_TICK_UNIT)))  // delay 1ms
+
+#endif
 
 int hal_write(int fd, const void *buf, int nbytes);
 #define hal_flush(fd) ((void)0)

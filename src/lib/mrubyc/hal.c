@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <zephyr/init.h>
+#include <zephyr/irq.h>
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
 
@@ -21,6 +22,15 @@ K_WORK_DEFINE(mrubyc_work, mrubyc_haltick);
 
 #if !defined(MRBC_NO_TIMER)
 /* ===== use timer ===== */
+static unsigned int hal_irq_lock_key;
+void hal_enable_irq(void) {
+  irq_unlock(hal_irq_lock_key);
+  k_sched_unlock();
+}
+void hal_disable_irq(void) {
+  k_sched_lock();
+  hal_irq_lock_key = irq_lock();
+}
 static void mrubyc_timerhandler(struct k_timer *const timer) {
   k_work_submit(&mrubyc_work);
 }
