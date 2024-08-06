@@ -19,3 +19,4 @@ nrf52dk_nrf52832 (PCA10040)
 * https://devzone.nordicsemi.com/
 * https://docs.nordicsemi.com/
 * https://docs.zephyrproject.org/latest/
+* https://github.com/zephyrproject-rtos/zephyr/tree/main/samples
