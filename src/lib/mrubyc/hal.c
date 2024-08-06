@@ -14,11 +14,9 @@ static uint8_t memory_pool[MEMORY_SIZE];
 
 /* ===== prototype ===== */
 static int mrubyc_halinit(void);
-void mrubyc_haltick(struct k_work *const work);
 
 /* ===== kernel ===== */
 SYS_INIT(mrubyc_halinit, APPLICATION, 0);
-K_WORK_DEFINE(mrubyc_work, mrubyc_haltick);
 
 #if !defined(MRBC_NO_TIMER)
 /* ===== use timer ===== */
@@ -31,12 +29,12 @@ void hal_disable_irq(void) {
   k_sched_lock();
   hal_irq_lock_key = irq_lock();
 }
-static void mrubyc_timerhandler(struct k_timer *const timer) {
-  k_work_submit(&mrubyc_work);
-}
+static void mrubyc_timerhandler(struct k_timer *const timer) { mrbc_tick(); }
 K_TIMER_DEFINE(mrubyc_timer, mrubyc_timerhandler, NULL);
 #else
 /* ===== MRBC_NO_TIMER ===== */
+void mrubyc_haltick(struct k_work *const work) { mrbc_tick(); }
+K_WORK_DEFINE(mrubyc_work, mrubyc_haltick);
 static int mrubyc_halmain(void) {
   while (1) {
     k_work_submit(&mrubyc_work);
@@ -56,9 +54,6 @@ static int mrubyc_halinit(void) {
 #endif
   return EXIT_SUCCESS;
 }
-
-/* ===== mrubyc_haltick ===== */
-void mrubyc_haltick(struct k_work *const work) { mrbc_tick(); }
 
 /* ===== hal_write ===== */
 int hal_write(int fd, const void *buf, int nbytes) {
