@@ -12,6 +12,11 @@ mruby/c取得方法
 ********
 nrf52dk_nrf52832 (PCA10040)
 
+ライセンス
+********
+* /src/lib/mrubyc/hal.c, /src/lib/mrubyc/hal.hは「BSD-3-Clause license」に拠る（mruby/c由来のコード）
+* /CMakeLists.txt, /src/main.cは「Apache-2.0」に拠る（Zephyrサンプルコード由来のコード）
+
 参考情報
 ********
 * https://www.s-itoc.jp/support/technical-support/mrubyc/
