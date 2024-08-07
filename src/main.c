@@ -8,6 +8,7 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
 
+#include "../FastLZ/fastlz.h"
 #include "mrubyc.h"
 
 #define LED0_NODE DT_ALIAS(led0)
