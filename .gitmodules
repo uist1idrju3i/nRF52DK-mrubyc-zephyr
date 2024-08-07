@@ -1,3 +1,6 @@
 [submodule "mrubyc"]
 	path = mrubyc
 	url = https://github.com/mrubyc/mrubyc
+[submodule "heatshrink"]
+	path = heatshrink
+	url = https://github.com/atomicobject/heatshrink
