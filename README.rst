@@ -8,6 +8,12 @@ mruby/c取得方法
 #. git submodule init
 #. git submodule update
 
+lz4取得方法
+********
+#. cd lz4
+#. git submodule init
+#. git submodule update
+
 動作確認環境
 ********
 nrf52dk_nrf52832 (PCA10040)

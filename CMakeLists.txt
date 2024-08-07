@@ -8,6 +8,7 @@ target_sources(app PRIVATE
                     src/main.c
                     src/sample1.c
                     src/sample2.c
+                    lz4/lib/lz4.c
                     src/lib/mrubyc/hal.c
                     mrubyc/src/alloc.c
                     mrubyc/src/c_array.c
