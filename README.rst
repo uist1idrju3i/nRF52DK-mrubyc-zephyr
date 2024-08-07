@@ -16,6 +16,7 @@ nrf52dk_nrf52832 (PCA10040)
 ********
 * /src/lib/mrubyc/hal.c, /src/lib/mrubyc/hal.hは「BSD-3-Clause license」に拠る（mruby/c由来のコード）
 * /CMakeLists.txt, /src/main.cは「Apache-2.0」に拠る（Zephyrサンプルコード由来のコード）
+* /src/lib/miniz以下は「MIT license」に拠る（miniz由来のコード）
 
 参考情報
 ********
