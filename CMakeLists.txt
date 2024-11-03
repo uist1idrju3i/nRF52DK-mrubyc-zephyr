@@ -8,6 +8,8 @@ target_sources(app PRIVATE
                     src/main.c
                     src/sample1.c
                     src/sample2.c
+                    heatshrink/heatshrink_encoder.c
+                    heatshrink/heatshrink_decoder.c
                     src/lib/mrubyc/hal.c
                     mrubyc/src/alloc.c
                     mrubyc/src/c_array.c
